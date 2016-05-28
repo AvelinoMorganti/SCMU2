@@ -68,6 +68,47 @@ public class SettingsActivity extends Activity implements LocationListener {
     private Boolean provedorGPS_Habilitado;
     private Boolean provedorREDE_Habilitado;
 
+    Thread homeCoordenates = new Thread(new Runnable(){
+        public void run() {
+
+            try {
+                Thread.sleep(30*1000);
+                if(!latitude.equals("") ){
+
+                    Log.i("HOME", "actualizar !!!!!!!!!!");
+                    BasicCookieStore ck = Utils.createApacheCookieStore((List<CookiesImpl>) data.getData());
+                    request = new Request(ck);
+
+                    String response = request.getStateJSON(ck);
+
+                    Gson gson = new Gson();
+                    state = gson.fromJson(response, State.class);
+
+                    double distance = HaversineAlgorithm.HaversineInM(
+                            Double.parseDouble(state.getLatitude()),
+                            Double.parseDouble(state.getLongitude()),
+                            Double.parseDouble(latitude),
+                            Double.parseDouble(longitude));
+
+                    if(distance < 30){
+                        setTypeRequest("alarm", false);
+                        setTypeRequest("lamp", true);
+
+                    }else {
+                        setTypeRequest("alarm", true);
+                        setTypeRequest("lamp", false);
+                    }
+
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+    });
+
+
     // Cria um Broadcast Receiver para que a GPSActivity seja avisada caso o usuário mude as configurações de localização por fora do app
     // (deslizando a tela para baixo e clicando no ícone do GPS, por exemplo).
     // Isso é necessário porque durante a execução, o usuário tem como mudar as configurações de localização sem usar o próprio aplicativo.
@@ -99,6 +140,7 @@ public class SettingsActivity extends Activity implements LocationListener {
 
         localizarUsuario();
         //actualizar();
+        homeCoordenates.start();
 
         myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
@@ -140,7 +182,7 @@ public class SettingsActivity extends Activity implements LocationListener {
                 showMessage("Automatic SMS notifications are Active.\nNow, police and firefighters receive\nAutomatic notifications", "OK");
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(),
-                         "Network error. Please make sure your Wifi is active and try again.", Toast.LENGTH_SHORT).show();
+                        "Network error. Please make sure your Wifi is active and try again.", Toast.LENGTH_SHORT).show();
             }
         } else {
             try {
@@ -477,6 +519,56 @@ public class SettingsActivity extends Activity implements LocationListener {
         //through the runOnUiThread method.
         this.runOnUiThread(Timer_Tick);
 
+    }
+
+    private void setTypeRequest(String type, boolean value) {
+
+        try {
+            if (type.equals("lamp")) {
+
+                BasicCookieStore ck = Utils.createApacheCookieStore((List<CookiesImpl>) data.getData());
+                request = new Request(ck);
+
+                String response = request.getStateJSON(ck);
+
+                Gson gson = new Gson();
+                state = gson.fromJson(response, State.class);
+                state.setLamp(value);
+
+                String json = gson.toJson(state);
+                request.setStateJSON(ck, json);
+
+                /*if (value) {
+                    showMessage("LAMP ON", "OK");
+                } else {
+                    showMessage("LAMP OFF", "OK");
+                }*/
+            }
+
+
+            if (type.equals("alarm")) {
+                BasicCookieStore ck = Utils.createApacheCookieStore((List<CookiesImpl>) data.getData());
+                request = new Request(ck);
+
+                String response = request.getStateJSON(ck);
+
+                Gson gson = new Gson();
+                state = gson.fromJson(response, State.class);
+                state.setAlarm(value);
+
+                String json = gson.toJson(state);
+                request.setStateJSON(ck, json);
+
+                /*if (value) {
+                    showMessage("ALARM ON", "OK");
+                } else {
+                    showMessage("ALARM OFF", "OK");
+                }*/
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(),
+                    "Network error. Please make sure your Wifi is active and try again.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
