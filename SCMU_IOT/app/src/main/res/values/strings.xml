@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">WHΛVES</string>
+    <string name="settings_activity_name">Settings</string>
+    <string name="textLamp1">Lamp 1:</string>
+    <string name="textButtonLampOn">ON</string>
+    <string name="textButtonLampOff">OFF</string>
+    <string name="textAlarm">Alarm 1:</string>
+    <string name="textAlarm1">Alarm 1:</string>
+    <string name="textOptions">Options</string>
+    <string name="textSettings">Settings</string>
+    <string name="textSMSNotifications">Automatic notifications</string>
+    <string name="textLocation">Set current location as home? </string>
+    <string name="textYes">Yes</string>
+    <string name="textBack">Back</string>
+    <string name="textLogin">Login</string>
+    <string name="textUsername">Username</string>
+    <string name="textPassword">Password</string>
+    <string name="textEnter">Enter</string>
+
+
+    <string name="action_settings">Configure</string>
+
+    <string name="gps_msg">Current position: </string>
+    <string name="textPainel">Painel</string>
+
+</resources>

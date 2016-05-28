@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_margin="20dp">
+
+            <Switch
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="@string/textLamp1"
+                android:id="@+id/switchLamp"
+                android:checked="false"
+                android:layout_gravity="center_horizontal"
+                android:onClick="setLamp"/>
+
+            <Switch
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="@string/textAlarm1"
+                android:id="@+id/switchAlarm"
+                android:layout_gravity="center_horizontal"
+                android:checked="false"
+                android:onClick="setAlarm"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="0.5">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Luminosity: 96%"
+                android:id="@+id/textLum"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Harmful gases: 13%"
+                android:id="@+id/textGas"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@string/textSettings"
+                android:id="@+id/buttonSettings"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
