@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:layout_margin="20dp">
+
+        <Switch
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:text="@string/textLamp1"
+            android:id="@+id/switchLamp"
+            android:layout_gravity="center_horizontal"
+            android:onClick="setLamp"/>
+
+        <Switch
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:text="@string/textAlarmSound"
+            android:id="@+id/switchAlarm"
+            android:layout_gravity="center_horizontal"
+            android:onClick="setAlarm"/>
+
+    </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/linha"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/rodape"
+        android:layout_margin="5dp"
+        android:background="@android:color/black" />
+
+    <LinearLayout
+        android:id="@+id/rodape"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="Date"
+                android:onClick="setDate"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="Time"
+                android:onClick="setTime"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="Okay"
+                android:onClick="setAlarmClock"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,16 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_enabled="true"
+        android:state_focused="true">
+        <shape android:padding="10dp" android:shape="rectangle">
+            <stroke android:width="2dp" android:color="@color/twitter" />
+            <corners android:bottomLeftRadius="1dp" android:bottomRightRadius="1dp" android:topLeftRadius="1dp" android:topRightRadius="1dp" />
+        </shape>
+    </item>
+    <item android:state_enabled="true">
+        <shape android:padding="10dp"
+            android:shape="rectangle">
+            <corners android:bottomLeftRadius="1dp" android:bottomRightRadius="1dp" android:topLeftRadius="1dp" android:topRightRadius="1dp" />
+        </shape>
+    </item>
+</selector>
